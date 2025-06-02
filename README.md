@@ -18,4 +18,4 @@ A fully documented simulation of an enterprise-style network built with real Cis
 <br>
 <b>Testing Tools: </b> ping, tracert, ipconfig, ssh
 <h2> 🧱 Network Topology </h2>
-![Network Diagram](images/Cisco_Project_Diagram.drawio.png)
+<img src="images/CiscoProjectDiagram.png" alt="Network Diagram">
