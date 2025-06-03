@@ -46,3 +46,13 @@ The switch I purchased came with no firmware installed so it booted up in ROMMON
 <li> login </li>
 <li> exit </li>
 <li> copy running-config startup-config </li>
+<b> 2. Baseline Configuration for the Router </b>
+<br>
+On initial boot the router would get stuck on a certain command while I was consoled in through putty and it turns out it was because the router was loading the startup config that was misconfigured so to fix this I powered on the router and meanwhile I was consoled in on my laptop through putty and while the router was booting I sent Ctrl+Pause (I had to use the on screen keyboard for my surface laptop since it didn't have a pause button) this dropped me into rommon mode and I entered confreg 0x2142 which tells the router to ignore the startup-config. After I sent a reset command and was then able to get a normal boot from the router and dropped into user EXEC mode. Here are the config details that I entered in the CLI to setup the router:
+<br>
+<li> enable </li>
+<li> hostname R1941 </li>
+<LI> enable secret ******** </LI>
+
+
+
