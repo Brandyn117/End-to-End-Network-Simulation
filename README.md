@@ -19,3 +19,30 @@ A fully documented simulation of an enterprise-style network built with real Cis
 <b>Testing Tools: </b> ping, tracert, ipconfig, ssh
 <h2> 🧱 Network Topology </h2>
 <img src="images/CiscoProjectDiagram.png" alt="Network Diagram">
+<h2> 💡Phase 1: Device Setup & Isolation (Systems Build + Configuration) </h2>
+<b> Goal: </b> To simulate a segmented, isolated network environment with proper device configuration and VLAN routing, using real Cisco IOS CLI commands.
+<br>
+Configuration Steps:
+<br>
+<b> 1. Baseline Configuration for the Switch </b>
+<br>
+The switch I purchased came with no firmware installed so it booted up in ROMMON mode. I then tried to use a flash drive to install firmware on to it but the flash drives I had on hand were not compatible with the switch. So I ended up using a console cable and Tera Term to transfer the firmware and install it. Once it was installed, ROMMON mode was turned off and ports now allowed for POE and data transfer. Once I was finally able to console in and reach the proper switch prompt (User EXEC Mode) in the CLI using Tera Term I ran:
+<br>
+<li> enable #to enter privileged EXEC mode </li> 
+<li> configure terminal #to access global configuration mode </li>
+<li> hostname SW2960 </li>
+<li> enable secret ******** </li>
+<br>
+<b> #The following for securing Console Access </b>
+<br>
+<li> line console 0 </li>
+<li> password ******** </li>
+<li> login </li>
+<li> exit </li>
+<br>
+<b> # Virtual Teletype Access Secured (Used for inital testing for basic remote login, I set up SSH later): </b>
+<li> line vty 0 4 </li>
+<li> password ******** </li>
+<li> login </li>
+<li> exit </li>
+<li> copy running-config startup-config </li>
