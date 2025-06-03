@@ -52,7 +52,22 @@ On initial boot the router would get stuck on a certain command while I was cons
 <br>
 <li> enable </li>
 <li> hostname R1941 </li>
-<LI> enable secret ******** </LI>
+<img src="images/show run include hostname.png" alt="hostname">
+# Secures access to privileged EXEC mode (Router#)
+<li> enable secret ******** </li>
+<br>
+# The following Secures Console Access
+<li> line console 0 </li>
+<li> password ******** </li>
+<li> login </li>
+<li> exit </li>
+# Secure VTY Access for Inital Testing
+<li> line vty 0 4</li>
+<li> password ******** </li>
+<li> login </li>
+<li> exit </li>
 
+#Always save
+<li> copy running-config startup-config </li>
 
 
