@@ -197,6 +197,26 @@ Setting up subinterfaces on a physical router port allows the router to route tr
 <li> copy running-config startup-config </li>
 <br>
 <img src="images/show interfaces GigabitEthernet301 switchport.png" alt="trunk 3/0/1">
+<br>
+<h2> 💡Phase 2: Network Services & Testing </h2>
+<br>
+<b> 1. Set Up DHCP on Router </b>
+<br>
+Commands ran:
+<br>
+<img src="images/dhcp config.png" alt="dhcp config">
+<br>
+<img src="images/show run section dhcp.png" alt="dhcp config">
+<br>
+Plugged my laptop into port 3/0/2 and it was given an ip from the pool:
+<br>
+<img src="images/show ip dhcp binding.png" alt="dhcp config">
+<br>
+From laptop's B command prompt:
+<br>
+<img src="images/ipconfig dhcp.png" alt="dhcp config">
+<br>
+
 
 
 
