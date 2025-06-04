@@ -1,6 +1,6 @@
 # 🖥️ End-to-End-Network-Simulation
 <h2>📜 Description </h2>
-A fully documented simulation of an enterprise-style network built with real Cisco hardware. This project includes VLAN segmentation, inter-VLAN routing, DHCP, SSH configuration, and network testing. The goal was to simulate a secure, isolated environment using Cisco IOS CLI and demonstrate fundamental networking and security skills.
+A fully documented simulation of an enterprise-style network built with real Cisco hardware. This project includes VLAN segmentation, inter-VLAN routing (Router-on-a-Stick), DHCP, SSH configuration, static IP and subnet assignment, troubleshooting, and network testing. The goal was to simulate a secure, isolated environment using Cisco IOS CLI and demonstrate fundamental networking and security skills.
 <h2> 🧰 Devices Used </h2>
 <b> Router: </b> Cisco 1941-SEC/K9 2 Port Gigabit Router
 <br>
