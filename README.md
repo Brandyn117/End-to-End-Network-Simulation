@@ -245,7 +245,7 @@ Accessing the Router through SSH from PuTTY:
 <br>
 Commands ran:
 <br>
-<img src="images/ssh2.png" alt="Switch SSH", width="600">
+<img src="images/ssh2.png" alt="Switch SSH", width="750">
 <br>
 Additional commands that were ran but not shown in the screenshot:
 <li> username admin privilege 15 secret ******** </li>
