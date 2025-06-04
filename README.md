@@ -159,7 +159,42 @@ Creating a Switch Virutal Interface (SVI) for VLAN 10. This give the switch an I
 <li> exit </li>
 <br>
 <b> 8. Router-on-a-Stick (Inter VLAN Routing) </b>
-
+<br>
+#Step 1 - Configuring Subinterfaces on the Router:
+<li> enable </li>
+<li> configure terminal </li>
+<li> interface GigabitEthernet0/0.10 </li>
+<li> encapsulation dot1q 10 </li>
+<li> ip address 192.168.100.1 255.255.255.248 </li>
+<li> exit </li>
+<br>
+<li> interface GigabitEthernet0/0.20 </li>
+<li> encapsulation dot1q 20 </li>
+<li> ip address 192.168.200.1 255.255.255.0 </li>
+<li> exit </li>
+<br>
+Note: I ran into an issue here after running the ip address command because the physial interfaces (G0/0 and G0/1) were still holding IP addresses and that conflicts with the subinterface setup. We can't have both a physical interface and its subinterfaces configured with IP addresses at the same time so I had to remove the IP's from the physical interface first:
+<br>
+<br>
+<li> enable </li>
+<li> configure terminal </li>
+<li> interface GigabitEthernet0/0 </li>
+<li> no ip address </li>
+<li> exit </li>
+<br>
+Repeat these commands for 0/1. After doing this, the subinterfaces should be good to go after re running those commands that threw an error.
+<br>
+Setting up subinterfaces on a physical router port allows the router to route traffic between VLANs. After running the commands for setting up the subinterfaces, the single physical router G0/0 now logically handles multiple VLANs, each with its own subinterface, a VLAN tag and a gateway IP. This allows the router to route traffic between VLANs 10 and 20, even though they're on the same physical link (hence the name Router-on-a-Stick). 
+<img src="images/show run section interface.png" alt="subinterfaces">
+<br>
+#Step 2 - Configure the Switch Port as a Trunk:
+<br>
+<li> enable </li>
+<li> configure terminal </li>
+<li> interface GigabitEthernet3/0/1 </li>
+<li> switchport mode trunk </li>
+<li> exit </li>
+<li> copy running-config startup-config </li>
 
 
 
