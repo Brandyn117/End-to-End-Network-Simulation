@@ -212,10 +212,25 @@ Plugged my laptop into port 3/0/2 and it was given an ip from the pool:
 <br>
 <img src="images/show ip dhcp binding.png" alt="dhcp config">
 <br>
-From laptop's B command prompt:
+From laptop B's command prompt:
 <br>
 <img src="images/ipconfig dhcp.png" alt="dhcp config">
 <br>
+Laptop A's IP details:
+<br>
+<img src="images/vlan 10 laptop.png" alt="A's config">
+<br>
+<b> Inter- VLAN Routing Test </b>
+Laptop B ping to Laptop A:
+<br>
+<img src="images/laptop b vlan 20 ip config and ping to laptop a.png" alt="A's config">
+<br>
+Laptop A ping to Laptop B:
+<img src="images/Laptop A vlan 10 ip config and ping to laptop b.png" alt="A's config">
+<br>
+One issue I ran into here while trying to test Inter VLAN routing was that Laptop A and Laptop B ping requests were timing out. What I found was that the File and Printer Sharing (Echo Request - ICMPv4-In) for the Private profile in inboud rules in Windows Firewall was set to only allow traffic from the local subnet and since inter- VLAN communication means the devices are on different subnets, the rule silently blocks the ping. So I had to change the scope for that rule in properties and select Any IP address for Remote IP address:
+<br>
+<img src="images/windows firewall rule.png" alt="inbound rule">
 
 
 
