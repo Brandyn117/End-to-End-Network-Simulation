@@ -90,7 +90,7 @@ Here are the config details that I entered in the CLI to setup the router:
 <li> password ******** </li>
 <li> login </li>
 <li> exit </li>
-<img src="images/show run section line.png" alt="vty proof">
+<img src="images/show run section line.png" alt="vty proof" width="600" height="500">
 #Always save
 <li> copy running-config startup-config </li>
 <br>
@@ -214,11 +214,11 @@ Plugged my laptop into port 3/0/2 and it was given an ip from the pool:
 <br>
 From laptop B's command prompt:
 <br>
-<img src="images/ipconfig dhcp.png" alt="dhcp config">
+<img src="images/ipconfig dhcp.png" alt="dhcp config" width="600" height="500">
 <br>
 Laptop A's IP details:
 <br>
-<img src="images/vlan 10 laptop.png" alt="A's config">
+<img src="images/vlan 10 laptop.png" alt="A's config" width="600" height="500">
 <br>
 <b> 2. Inter- VLAN Routing Test </b>
 Laptop B ping to Laptop A:
@@ -230,7 +230,7 @@ Laptop A ping to Laptop B:
 <br>
 One issue I ran into here while trying to test Inter VLAN routing was that Laptop A and Laptop B ping requests were timing out. What I found was that the File and Printer Sharing (Echo Request - ICMPv4-In) for the Private profile in inboud rules in Windows Firewall was set to only allow traffic from the local subnet and since inter- VLAN communication means the devices are on different subnets, the rule silently blocks the ping. So I had to change the scope for that rule in properties and select Any IP address for Remote IP address:
 <br>
-<img src="images/windows firewall rule.png" alt="inbound rule">
+<img src="images/windows firewall rule.png" alt="inbound rule" width="600" height="500">
 <br>
 <b> 3. Configuring SSH on Router </b>
 <br>
@@ -239,7 +239,7 @@ Commands ran:
 <br>
 Accessing the Router through SSH from PuTTY:
 <br>
-<img src="images/r ssh2.png" alt="Router SSH">
+<img src="images/r ssh2.png" alt="Router SSH" width="600" height="500">
 <br>
 <b> 4. Configuring SSH on Switch </b>
 <br>
