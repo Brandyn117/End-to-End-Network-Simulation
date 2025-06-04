@@ -48,7 +48,24 @@ The switch I purchased came with no firmware installed so it booted up in ROMMON
 <li> copy running-config startup-config </li>
 <b> 2. Baseline Configuration for the Router </b>
 <br>
-On initial boot the router would get stuck on a certain command while I was consoled in through putty and it turns out it was because the router was loading the startup config that was misconfigured so to fix this I powered on the router and meanwhile I was consoled in on my laptop through putty and while the router was booting I sent Ctrl+Pause (I had to use the on screen keyboard for my surface laptop since it didn't have a pause button) this dropped me into rommon mode and I entered confreg 0x2142 which tells the router to ignore the startup-config. After I sent a reset command and was then able to get a normal boot from the router and dropped into user EXEC mode. Here are the config details that I entered in the CLI to setup the router:
+<br>
+When I originally booted my router I had connected it to my ISP and set up a config to get things going beteen the Cisco router and my ISP's router. I then disconnected the Cisco router and decided to create this isolated network simulation project. But what ended up happening was when I began to set up the isolated environment and booted my Cisco router again, the config I had set earlier was not configured for this isolated environment and so it did not boot properly and got stuck on a certain command in the console while it was booting. I did not realize at first why it was not finishing the boot process until I did some research and realized it was due to the startup-config I had configured prior. 
+To bypass the faulty configuration, I entered ROMMON mode by rebooting the router and pressing Ctrl + Pause/Break during boot (I used the on-screen keyboard since my laptop lacks a physical Pause key).
+Once in ROMMON, I ran:
+<br>
+<li> confreg 0x2142 </li>
+<li> reset </li>
+<br>
+This told the router to ignore the startup-config in NVRAM on the next boot. The router successfully loaded into user EXEC mode without applying the problematic config.
+After gaining access, I restored the configuration register to its default value (0x2102), which tells the router to load the IOS from flash and apply the new saved startup-config during future boots:
+<br>
+<li> enable </li>
+<li> configure terminal </li>
+<li> config-register 0x2102 </li> #the register was originally set to 0x2142 
+<li> write memory </li>
+<li> reload </li>
+<br>
+Here are the config details that I entered in the CLI to setup the router:
 <br>
 <li> enable </li>
 <li> hostname R1941 </li>
@@ -66,8 +83,44 @@ On initial boot the router would get stuck on a certain command while I was cons
 <li> password ******** </li>
 <li> login </li>
 <li> exit </li>
-
+<img src="images/show run section line.png" alt="vty proof">
 #Always save
 <li> copy running-config startup-config </li>
+<br>
+<b> 3. Interface Configuration for Router </b>
+<br>
+CLI Snippet:
+<br>
+<li> enable </li>
+<li> configure terminal </li>
+<li> interface GigabitEthernet0/0</li>
+<li> ip address 192.168.100.1 255.255.255.248</li>
+<li> no shutdown </li>
+<li> interface GigabitEthernet0/1 </li>
+<li> ip address 192.168.200.1 255.255.255.0 </li>
+<li> no shutdown </li>
+<li> exit </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
