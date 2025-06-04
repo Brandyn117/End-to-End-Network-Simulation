@@ -22,11 +22,14 @@ A fully documented simulation of an enterprise-style network built with real Cis
 <h2> 💡Phase 1: Device Setup & Isolation (Systems Build + Configuration) </h2>
 <b> Goal: </b> To simulate a segmented, isolated network environment with proper device configuration and VLAN routing, using real Cisco IOS CLI commands.
 <br>
+<br>
 Configuration Steps:
 <br>
-<b> 1. Baseline Configuration for the Switch </b>
+<br>
+<b> 1. Baseline Configuration for the Switch: </b>
 <br>
 The switch I purchased came with no firmware installed so it booted up in ROMMON mode. I then tried to use a flash drive to install firmware on to it but the flash drives I had on hand were not compatible with the switch. So I ended up using a console cable and Tera Term to transfer the firmware and install it. Once it was installed, ROMMON mode was turned off and ports now allowed for POE and data transfer. Once I was finally able to console in and reach the proper switch prompt (User EXEC Mode) in the CLI using Tera Term I ran:
+<br>
 <br>
 <li> enable #to enter privileged EXEC mode </li> 
 <li> configure terminal #to access global configuration mode </li>
@@ -46,18 +49,21 @@ The switch I purchased came with no firmware installed so it booted up in ROMMON
 <li> login </li>
 <li> exit </li>
 <li> copy running-config startup-config </li>
+<br>
 <b> 2. Baseline Configuration for the Router </b>
 <br>
 <br>
-When I originally booted my router I had connected it to my ISP and set up a config to get things going beteen the Cisco router and my ISP's router. I then disconnected the Cisco router and decided to create this isolated network simulation project. But what ended up happening was when I began to set up the isolated environment and booted my Cisco router again, the config I had set earlier was not configured for this isolated environment and so it did not boot properly and got stuck on a certain command in the console while it was booting. I did not realize at first why it was not finishing the boot process until I did some research and realized it was due to the startup-config I had configured prior. 
+When I originally booted my router I had connected it to my ISP's router and set up a config to get things going beteen the Cisco router and my ISP's router. I then disconnected the Cisco router and decided to create this isolated network simulation project. But what ended up happening was when I began to set up the isolated environment and booted my Cisco router again, the config I had set earlier was not configured for this isolated environment and so it did not boot properly and got stuck on a certain command in the console while it was booting. I did not realize at first why it was not finishing the boot process until I did some research and realized it was due to the startup-config I had configured prior. 
 To bypass the faulty configuration, I entered ROMMON mode by rebooting the router and pressing Ctrl + Pause/Break during boot (I used the on-screen keyboard since my laptop lacks a physical Pause key).
 Once in ROMMON, I ran:
+<br>
 <br>
 <li> confreg 0x2142 </li>
 <li> reset </li>
 <br>
 This told the router to ignore the startup-config in NVRAM on the next boot. The router successfully loaded into user EXEC mode without applying the problematic config.
 After gaining access, I restored the configuration register to its default value (0x2102), which tells the router to load the IOS from flash and apply the new saved startup-config during future boots:
+<br>
 <br>
 <li> enable </li>
 <li> configure terminal </li>
@@ -66,6 +72,7 @@ After gaining access, I restored the configuration register to its default value
 <li> reload </li>
 <br>
 Here are the config details that I entered in the CLI to setup the router:
+<br>
 <br>
 <li> enable </li>
 <li> hostname R1941 </li>
@@ -89,7 +96,9 @@ Here are the config details that I entered in the CLI to setup the router:
 <br>
 <b> 3. Interface Configuration for Router </b>
 <br>
+<br>
 CLI Snippet:
+<br>
 <br>
 <li> enable </li>
 <li> configure terminal </li>
@@ -100,7 +109,44 @@ CLI Snippet:
 <li> ip address 192.168.200.1 255.255.255.0 </li>
 <li> no shutdown </li>
 <li> exit </li>
-
+<br>
+<b> 4. VLAN Setup </b>
+<br>
+<br>
+Consoled into the switch and ran:
+<br>
+<li> vlan 10 </li>
+<li> name Management </li>
+<li> exit </li>
+<li> vlan 20 </li>
+<li> name Workstation </li>
+<li> exit </li>
+<br>
+<b> 5. Default Gateway </b>
+<br>
+<br>
+in the swithces console I ran:
+<br>
+<li> ip default-gateway 192.168.100.1 </li>
+<br>
+This tells the switch which IP address to use when sending traffic to devices not on the same subnet. In this case, 192.168.100.1 is the routers IP. 
+<br>
+<br>
+<b> 6. Port Assignments </b>
+<br>
+<br>
+The following sets up the Management port for VLAN 10 and the ports for VLAN 20. In the switches console I ran:
+<br>
+<br>
+<li> interface GigabitEthernet3/0/1 </li>
+<li> switchport mode access </li>
+<li> switchport access vlan 10 </li>
+<li> exit </li>
+<br>
+<li> interface range GigabitEthernet3/0/2-3 </li>
+<li> switchport mode access </li>
+<li> switchport access vlan 20 </li>
+<li> exit </li>
 
 
 
