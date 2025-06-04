@@ -18,7 +18,7 @@ A fully documented simulation of an enterprise-style network built with real Cis
 <br>
 <b>Testing Tools: </b> ping, tracert, ipconfig, ssh
 <h2> 🧱 Network Topology </h2>
-<img src="images/CiscoProjectDiagram.png" alt="Network Diagram">
+<img src="images/CiscoProjectDiagram.png" alt="Network Diagram" width="600">
 <h2> 💡Phase 1: Device Setup & Isolation (Systems Build + Configuration) </h2>
 <b> Goal: </b> To simulate a segmented, isolated network environment with proper device configuration and VLAN routing, using real Cisco IOS CLI commands.
 <br>
@@ -142,13 +142,13 @@ The following sets up the Management port for VLAN 10 and the ports for VLAN 20.
 <li> switchport mode access </li>
 <li> switchport access vlan 10 </li>
 <li> exit </li>
-<img src="images/show interfaces GigabitEthernet303 switchport.png" alt="3/0/3">
+<img src="images/show interfaces GigabitEthernet303 switchport.png" alt="3/0/3" width="600">
 <br>
 <li> interface range GigabitEthernet3/0/2, GigabitEthernet3/0/4 </li>
 <li> switchport mode access </li>
 <li> switchport access vlan 20 </li>
 <li> exit </li>
-<img src="images/show interfaces GigabitEthernet302 switchport.png" alt="3/0/2">
+<img src="images/show interfaces GigabitEthernet302 switchport.png" alt="3/0/2" width="600">
 <br>
 <b> 7. Management Interface (SVI) </b>
 <br>
@@ -185,7 +185,7 @@ Note: I ran into an issue here after running the ip address command because the 
 Repeat these commands for 0/1. After doing this, the subinterfaces should be good to go after re running those commands that threw an error.
 <br>
 Setting up subinterfaces on a physical router port allows the router to route traffic between VLANs. After running the commands for setting up the subinterfaces, the single physical router G0/0 now logically handles multiple VLANs, each with its own subinterface, a VLAN tag and a gateway IP. This allows the router to route traffic between VLANs 10 and 20, even though they're on the same physical link (hence the name Router-on-a-Stick). 
-<img src="images/show run section interface.png" alt="subinterfaces">
+<img src="images/show run section interface.png" alt="subinterfaces" width="500">
 <br>
 #Step 2 - Configure the Switch Port as a Trunk:
 <br>
@@ -196,7 +196,7 @@ Setting up subinterfaces on a physical router port allows the router to route tr
 <li> exit </li>
 <li> copy running-config startup-config </li>
 <br>
-<img src="images/show interfaces GigabitEthernet301 switchport.png" alt="trunk 3/0/1">
+<img src="images/show interfaces GigabitEthernet301 switchport.png" alt="trunk 3/0/1" width="600">
 <br>
 <h2> 💡Phase 2: Network Services & Testing </h2>
 <br>
@@ -204,7 +204,7 @@ Setting up subinterfaces on a physical router port allows the router to route tr
 <br>
 Commands ran:
 <br>
-<img src="images/dhcp config.png" alt="dhcp config">
+<img src="images/dhcp config.png" alt="dhcp config" width="600">
 <br>
 <img src="images/show run section dhcp.png" alt="dhcp config">
 <br>
@@ -223,10 +223,10 @@ Laptop A's IP details:
 <b> 2. Inter- VLAN Routing Test </b>
 Laptop B ping to Laptop A:
 <br>
-<img src="images/laptop b vlan 20 ip config and ping to laptop a.png" alt="A's config">
+<img src="images/laptop b vlan 20 ip config and ping to laptop a.png" alt="A's config" width="600">
 <br>
 Laptop A ping to Laptop B:
-<img src="images/Laptop A vlan 10 ip config and ping to laptop b.png" alt="A's config">
+<img src="images/Laptop A vlan 10 ip config and ping to laptop b.png" alt="A's config" width="800">
 <br>
 One issue I ran into here while trying to test Inter VLAN routing was that Laptop A and Laptop B ping requests were timing out. What I found was that the File and Printer Sharing (Echo Request - ICMPv4-In) for the Private profile in inboud rules in Windows Firewall was set to only allow traffic from the local subnet and since inter- VLAN communication means the devices are on different subnets, the rule silently blocks the ping. So I had to change the scope for that rule in properties and select Any IP address for Remote IP address:
 <br>
@@ -235,7 +235,7 @@ One issue I ran into here while trying to test Inter VLAN routing was that Lapto
 <b> 3. Configuring SSH on Router </b>
 <br>
 Commands ran:
-<img src="images/R ssh.png" alt="Router SSH">
+<img src="images/R ssh.png" alt="Router SSH" width="750">
 <br>
 Accessing the Router through SSH from PuTTY:
 <br>
@@ -245,7 +245,7 @@ Accessing the Router through SSH from PuTTY:
 <br>
 Commands ran:
 <br>
-<img src="images/ssh2.png" alt="Switch SSH">
+<img src="images/ssh2.png" alt="Switch SSH", width="600">
 <br>
 Additional commands that were ran but not shown in the screenshot:
 <li> username admin privilege 15 secret ******** </li>
