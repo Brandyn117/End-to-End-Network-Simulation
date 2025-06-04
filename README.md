@@ -138,18 +138,27 @@ This tells the switch which IP address to use when sending traffic to devices no
 The following sets up the Management port for VLAN 10 and the ports for VLAN 20. In the switches console I ran:
 <br>
 <br>
-<li> interface GigabitEthernet3/0/1 </li>
+<li> interface GigabitEthernet3/0/3 </li>
 <li> switchport mode access </li>
 <li> switchport access vlan 10 </li>
 <li> exit </li>
+<img src="images/show interfaces GigabitEthernet303 switchport.png" alt="3/0/3">
 <br>
-<li> interface range GigabitEthernet3/0/2-3 </li>
+<li> interface range GigabitEthernet3/0/2, GigabitEthernet3/0/4 </li>
 <li> switchport mode access </li>
 <li> switchport access vlan 20 </li>
 <li> exit </li>
-
-
-
+<img src="images/show interfaces GigabitEthernet302 switchport.png" alt="3/0/2">
+<br>
+<b> 7. Management Interface (SVI) </b>
+<br>
+Creating a Switch Virutal Interface (SVI) for VLAN 10. This give the switch an IP so that I can remotely manage it through SSH. 
+<li> interface vlan 10 </li>
+<li> ip address 192.168.100.2 255.255.255.248 </li>
+<li> no shutdown </li>
+<li> exit </li>
+<br>
+<b> 8. Router-on-a-Stick (Inter VLAN Routing) </b>
 
 
 
