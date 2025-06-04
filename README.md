@@ -195,6 +195,8 @@ Setting up subinterfaces on a physical router port allows the router to route tr
 <li> switchport mode trunk </li>
 <li> exit </li>
 <li> copy running-config startup-config </li>
+<br>
+<img src="images/show interfaces GigabitEthernet301 switchport.png" alt="trunk 3/0/1">
 
 
 
