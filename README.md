@@ -221,6 +221,7 @@ Laptop A's IP details:
 <img src="images/vlan 10 laptop.png" alt="A's config" width="600" height="500">
 <br>
 <b> 2. Inter- VLAN Routing Test </b>
+<br>
 Laptop B ping to Laptop A:
 <br>
 <img src="images/laptop b vlan 20 ip config and ping to laptop a.png" alt="A's config" width="600">
