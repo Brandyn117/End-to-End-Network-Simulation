@@ -18,7 +18,7 @@ A fully documented simulation of an enterprise-style network built with real Cis
 <br>
 <b>Testing Tools: </b> ping, tracert, ipconfig, ssh
 <h2> 🧱 Network Topology </h2>
-<img src="images/CiscoProjectDiagramNew.png" alt="Network Diagram" width="600">
+<img src="images/CiscoProjectDiagramNew.png" alt="Network Diagram" width="750">
 <h2> 💡Phase 1: Device Setup & Isolation (Systems Build + Configuration) </h2>
 <b> Goal: </b> To simulate a segmented, isolated network environment with proper device configuration and VLAN routing, using real Cisco IOS CLI commands.
 <br>
